@@ -32,7 +32,6 @@ addTask.onclick = function addTask() {
     var inputValue = document.getElementById("myInput").value;
     var lowerCaseInputValue = inputValue.toLowerCase();
     var taskText = document.createTextNode(inputValue);
-    //newLi.className = "col";
     newLi.appendChild(taskText);
     if (inputValue === ""){
         document.getElementById("alert").innerHTML = "Your goods does not have a name?";
