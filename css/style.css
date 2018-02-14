@@ -1,19 +1,11 @@
+/*
+common settings
+ */
 html, body {
     margin: 0;
     padding: 0;
     height: 100%;
     min-height: 100%;
-}
-#preLoader {
-    background-image: -webkit-gradient(linear, left top, right top, from(#ff8615), color-stop(#fb5130), to(#fc0462));
-    background-image: linear-gradient(90deg, #ff8615, #fb5130, #fc0462);
-    bottom: 0;
-    left: 0;
-    position: fixed;
-    right: 0;
-    top: 0;
-    z-index: 9999;
-    align-items: center;
 }
 a {
     text-decoration: none;
@@ -32,6 +24,9 @@ section {
     max-width: 1200px;
     margin: 0 auto;
 }
+/*
+main styles of section, content wrapper, inputs, button, and outputs list
+ */
 #main{
     min-height: 100vh;
     background: url(../img/bg.jpg) center no-repeat fixed ;
@@ -95,15 +90,41 @@ ul li {
     cursor: pointer;
     font-size: 26px;
     letter-spacing: 1px;
-    transition: 0.5s ease;
+    transition:all 0.5s ease;
     user-select: none;
-    margin: 15px ;
+    margin: 15px;
     border: 1px solid transparent;
     border-radius: 7%;
     list-style-type:none;
     padding: 15px;
     box-shadow: inset 0 0 15px 0 rgba(255,255,255,0.8);
+    animation: zoomIn 1s forwards;
 }
+/*
+animation of add and close blocks
+ */
+@keyframes zoomIn {
+    from{
+        transform: scale(0,0);
+    }
+    to{
+        transform: scale(1,1);
+    }
+}
+.zoomOut{
+    animation: zoomOut 1s forwards;
+}
+@keyframes zoomOut {
+    from{
+        transform: scale(1,1);
+    }
+    to{
+        transform: scale(0,0);
+    }
+}
+/*
+end animation
+ */
 ul li:hover{
     background: rgba(2, 82, 242, 0.8) no-repeat center;
     letter-spacing: 1px;
@@ -141,6 +162,9 @@ ul li.checked{
     font-size: 26px;
     margin-bottom: 100px;
 }
+/*
+RWD fixes for better view in smaller screens
+ */
 @media screen and (max-width: 1024px) {
     ul li {
         min-width: 185px;
