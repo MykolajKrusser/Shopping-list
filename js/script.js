@@ -1,45 +1,47 @@
 var addTask = document.getElementById("addBtn"); // access to add button
-var close = document.getElementsByClassName("close");
-var check = document.querySelector("ul");
-var getPreLoader = document.getElementById("preLoader"); // get an element
-// changing visibility by decrementing opacity from 1 to 0 and change style element to display "none".
+var close = document.getElementsByClassName("close"); //access to close button
+var ulElement = document.querySelector("ul");
+var getPreLoader = document.getElementById("preLoader"); // get an div container with pre-loader
 
+// changing visibility by decrementing opacity from 1 to 0 and change style element to display "none".
 function fadeOut(el){
-    el.style.opacity = 1;
-    var decrementOpacity = setInterval(function(){
-        el.style.opacity = el.style.opacity - 0.05;
-        if (el.style.opacity <=0.05){
-            clearInterval(decrementOpacity);
-            getPreLoader.style.display = "none";
+    el.style.opacity = 1; //container get opacity = 1
+    var decrementOpacity = setInterval(function(){ //start decrement Opacity function every 20 milisec
+        el.style.opacity = el.style.opacity - 0.05;// which which takes 0,05 opacity every 20 milisec
+        if (el.style.opacity <=0.05){ // so when container get 0 opacity
+            clearInterval(decrementOpacity); //the function will finish taking the transparency of the element
+            getPreLoader.style.display = "none"; // and hide this PreLoader container
         }
     }, 20);
 }
-// calling the function fadeOut.
-window.onload = function loadStart(){
+// call the function fadeOut.
+window.onload = function loadStart(){ //all this pre-loading "taking the transparency of container" start when page will being fully load
     setTimeout(function(){
         fadeOut(getPreLoader);
     },1000);
 };
 
-check.addEventListener("click", function(ev){
-    if(ev.target.tagName === "LI"){
-        ev.target.classList.toggle("checked");
+//makes li element checked by click event
+ulElement.addEventListener("click", function(ev){
+    if(ev.target.tagName === "LI"){ //show to the function which li element was clicked
+        ev.target.classList.toggle("checked"); //and add or remove checked class to "this" li element
     }
 },false);
 
+//Main function on click event fire
 addTask.onclick = function addTask() {
-    var newLi = document.createElement("li");
-    var inputValue = document.getElementById("myInput").value;
-    var lowerCaseInputValue = inputValue.toLowerCase();
-    var taskText = document.createTextNode(inputValue);
-    newLi.appendChild(taskText);
-    if (inputValue === ""){
+    var newLi = document.createElement("li"); //create li element
+    var inputValue = document.getElementById("myInput").value; //get user input text
+    var lowerCaseInputValue = inputValue.toLowerCase(); //transform this text to lower case for compare the entered text with the array goods database keys
+    var taskText = document.createTextNode(inputValue); //create text node with entered user text
+    newLi.appendChild(taskText);//and than add it to new li element
+    if (inputValue === ""){ //if user enters "nothing" he or she gets alert
         document.getElementById("alert").innerHTML = "Your goods does not have a name?";
-    }else {
+    }else { //in the other case the UL element will get new Li element
         document.getElementById("myUl").appendChild(newLi);
-        document.getElementById("alert").innerHTML = "";
+        document.getElementById("alert").innerHTML = ""; // and clear alert massage
     }
-    document.getElementById("myInput").value = "";
+    document.getElementById("myInput").value = ""; // and input
 
     /*
     GOODS ARRAY
@@ -212,38 +214,45 @@ addTask.onclick = function addTask() {
         }
     ];
 
-    for(var y = 0; y < goods.length; y++) {
+    for(var y = 0; y < goods.length; y++) { //if user enter goods which is located in the database, their price will be shown
         if (lowerCaseInputValue === goods[y].name) {
-            var spanPrice = document.createElement("span");
-            var quality = document.createTextNode('price: ' + goods[y].price + '$' + goods[y].q);
-            spanPrice.className = "cost";
-            spanPrice.setAttribute("data-cost", goods[y].price);
-            spanPrice.appendChild(quality);
-            newLi.appendChild(spanPrice);
+            var spanPrice = document.createElement("span"); //fore display price addTask() function create span element
+            var quality = document.createTextNode('price: ' + goods[y].price + '$' + goods[y].q); //and text with the price per piece or kilograms
+            spanPrice.className = "cost"; //add to span style class
+            spanPrice.setAttribute("data-cost", goods[y].price); //add data-cost attribute with price value to span html element fore calculating operations
+            spanPrice.appendChild(quality); //span element get text with price per piece or kilograms
+            newLi.appendChild(spanPrice); //and than li element get this span
         }
     }
 
-    var span = document.createElement("span");
-    var txt = document.createTextNode("\u00D7");
-    span.className = "close";
-    span.appendChild(txt);
-    newLi.appendChild(span);
+    var span = document.createElement("span"); //further our function addTask() create close button
+    var txt = document.createTextNode("\u00D7");//with html "X" symbol
+    span.className = "close"; // with css style
+    span.appendChild(txt); // span get "X" symbol
+    newLi.appendChild(span); // and li element get "X" span
 
-    for (var j = 0; j < close.length; j++){
-        close[j].onclick = function () {
-            var div = this.parentElement;
-            div.style.display = "none";
+    for (var j = 0; j < close.length; j++){ //loop fore close button
+        close[j].onclick = function () { // on click event fire function
+            var div = this.parentElement; // get parent element of child span with "X" (output will be li element)
+            div.classList.add("zoomOut"); // and that li element get zoom out animation
+            var async = setInterval(function () { //asynchronous function fore remove li element when user click on "X" span
+                div.style.display = "none";
+                clearInterval(async);
+            },1000) // time fore remove li element must be equal animation time in css animation description
         }
     }
-    sum();
+    sum(); // at the end of addTask() function we call calculation function for price if it was found in goods array
 };
 
 function sum() {
-    var totalPrice = document.getElementsByClassName("cost");
-    var sum = 0;
+    var totalPrice = document.getElementsByClassName("cost"); // get li collection with class "cost"
+    var sum = 0; //star sum price value
     for(var f = 0; f < totalPrice.length; f++){
-        sum += Number(totalPrice[f].getAttribute("data-cost"));
+        sum += Number(totalPrice[f].getAttribute("data-cost")); //add all price value of all products found in the database
     }
-    document.getElementById("total").innerHTML ='Total cost: ' + sum.toFixed(2) + "$";
+    document.getElementById("total").innerHTML ='Total cost: ' + sum.toFixed(2) + "$"; //and insert this sum in "total" html container
 }
+/*
+ the program can be perfected indefinitely
+ */
 
