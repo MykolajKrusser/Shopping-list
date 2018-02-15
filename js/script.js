@@ -189,7 +189,7 @@ addTask.onclick = function addTask() {
         },
         {
             'name':'vodka',
-            'price': '21.999',
+            'price': '21.99',
             'q': ''
         },
         {
