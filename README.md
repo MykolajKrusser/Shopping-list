@@ -1,5 +1,5 @@
 # Shopping-list
-A shopping list app with pricing and goods database. It may be used as to do list too.
+A shopping list app with pricing and goods database, for budget planing before going shoping. It may be used as to do list too.
 <br>
 <br>
 <a href='https://mykolajkrusser.github.io/Shopping-list'>see LIVE</a>
