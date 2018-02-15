@@ -57,7 +57,7 @@ main styles of section, content wrapper, inputs, button, and outputs list
     padding-left: 10px;
     font-family: Verdana, sans-serif;
 }
-#addBtn{
+.button{
     cursor: pointer;
     margin-top: 30px;
     box-sizing: border-box;
@@ -65,8 +65,9 @@ main styles of section, content wrapper, inputs, button, and outputs list
     border-radius: 5px;
     padding: 15px;
     transition: 0.5s;
+    margin-right: 20px;
 }
-#addBtn:hover{
+.button:hover{
     font-size: 22px;
 }
 ul {
@@ -79,7 +80,6 @@ ul {
     justify-content: center;
 }
 ul li {
-    display: flex;
     flex-direction: column;
     justify-content: space-around;
     background: rgba(2, 82, 242, 0.5) no-repeat center;
@@ -160,6 +160,9 @@ ul li.checked{
 }
 #total{
     font-size: 26px;
+    margin-bottom: 25px;
+}
+#restore{
     margin-bottom: 100px;
 }
 /*

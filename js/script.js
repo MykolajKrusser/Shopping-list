@@ -2,6 +2,10 @@ var addTask = document.getElementById("addBtn"); // access to add button
 var close = document.getElementsByClassName("close"); //access to close button
 var ulElement = document.querySelector("ul");
 var getPreLoader = document.getElementById("preLoader"); // get an div container with pre-loader
+var restore = document.getElementById("restore");
+var refresher = setInterval(function () { //refresh function sum() every 1 sec to price calculating of visible goods blocks
+    sum();
+}, 1000);
 
 // changing visibility by decrementing opacity from 1 to 0 and change style element to display "none".
 function fadeOut(el){
@@ -34,6 +38,7 @@ addTask.onclick = function addTask() {
     var inputValue = document.getElementById("myInput").value; //get user input text
     var lowerCaseInputValue = inputValue.toLowerCase(); //transform this text to lower case for compare the entered text with the array goods database keys
     var taskText = document.createTextNode(inputValue); //create text node with entered user text
+    newLi.setAttribute("style", "display: flex;");//set attribute display to determine the visibility status of a block and its participation in price calculations
     newLi.appendChild(taskText);//and than add it to new li element
     if (inputValue === ""){ //if user enters "nothing" he or she gets alert
         document.getElementById("alert").innerHTML = "Your goods does not have a name?";
@@ -238,6 +243,8 @@ addTask.onclick = function addTask() {
             var async = setInterval(function () { //asynchronous function fore remove li element when user click on "X" span
                 div.style.display = "none";
                 clearInterval(async);
+                div.classList.remove("zoomOut");
+                div.classList.add("restore");
             },1000) // time fore remove li element must be equal animation time in css animation description
         }
     }
@@ -247,11 +254,22 @@ addTask.onclick = function addTask() {
 function sum() {
     var totalPrice = document.getElementsByClassName("cost"); // get li collection with class "cost"
     var sum = 0; //star sum price value
-    for(var f = 0; f < totalPrice.length; f++){
-        sum += Number(totalPrice[f].getAttribute("data-cost")); //add all price value of all products found in the database
+    var li = document.querySelectorAll("li"); //select all li elements visible and invisible
+    for(var f = 0; f < totalPrice.length; f++){ // loop across all li elements
+        if(li[f].getAttribute("style") === "display: flex;") { //check visibility condition of li element/ If the block is visible, it will take part in the summation
+            sum += Number(totalPrice[f].getAttribute("data-cost")); //sum all price value of all products found in the database
+        }
     }
     document.getElementById("total").innerHTML ='Total cost: ' + sum.toFixed(2) + "$"; //and insert this sum in "total" html container
 }
+
+restore.onclick = function () { //button for restore deleted li elements
+    var restoreLI = document.getElementsByClassName("restore");
+    for(var r = 0; r < restoreLI.length; r++){ //across all li elements
+        restoreLI[r].style.display = "flex";//by changing style display
+    }
+};
+
 /*
  the program can be perfected indefinitely
  */
