@@ -52,8 +52,10 @@ v1.2
 - add "restore deleted" button
 - add refresh function for real time calculation goods price
 
+v1.3
+- add "Save to memory" button, which saves DOM in browser localStorage
+- add "Clear memory" button, which invokes function with localStorage.clear() method
+
 Plans for future:
 - add a help button with a description of the program features
 - make an optional catalog of goods, user can choose goods from catalog
-- make permanent memory from the added goods by php and mySQL or mySQLlite
-- make a list of saved goods lists
