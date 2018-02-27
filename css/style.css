@@ -162,8 +162,10 @@ ul li.checked{
     font-size: 26px;
     margin-bottom: 25px;
 }
-#restore{
-    margin-bottom: 100px;
+.row{
+    flex-direction: row;
+    justify-content: center;
+    margin: 20px 0 100px 0;
 }
 /*
 RWD fixes for better view in smaller screens

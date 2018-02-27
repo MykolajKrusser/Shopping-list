@@ -7,6 +7,16 @@ var refresher = setInterval(function () { //refresh function sum() every 1 sec t
     sum();
 }, 1000);
 
+window.addEventListener("DOMContentLoaded", function() {
+    for (var i = 0; i < localStorage.length; i++) {
+        var item = document.createElement("li");
+        item.style.display = "flex";
+        var localKey = localStorage.getItem(localStorage.key(i));
+        item.innerHTML = JSON.parse(localKey);
+        ulElement.appendChild(item);
+    }
+});
+
 // changing visibility by decrementing opacity from 1 to 0 and change style element to display "none".
 function fadeOut(el){
     el.style.opacity = 1; //container get opacity = 1
@@ -189,7 +199,7 @@ addTask.onclick = function addTask() {
         },
         {
             'name':'vodka',
-            'price': '21.99',
+            'price': '21.999',
             'q': ''
         },
         {
@@ -220,9 +230,9 @@ addTask.onclick = function addTask() {
     ];
 
     for(var y = 0; y < goods.length; y++) { //if user enter goods which is located in the database, their price will be shown
+        var spanPrice = document.createElement("span"); //fore display price addTask() function create span element
+        var quality = document.createTextNode('price: ' + goods[y].price + '$' + goods[y].q); //and text with the price per piece or kilograms
         if (lowerCaseInputValue === goods[y].name) {
-            var spanPrice = document.createElement("span"); //fore display price addTask() function create span element
-            var quality = document.createTextNode('price: ' + goods[y].price + '$' + goods[y].q); //and text with the price per piece or kilograms
             spanPrice.className = "cost"; //add to span style class
             spanPrice.setAttribute("data-cost", goods[y].price); //add data-cost attribute with price value to span html element fore calculating operations
             spanPrice.appendChild(quality); //span element get text with price per piece or kilograms
@@ -270,6 +280,23 @@ restore.onclick = function () { //button for restore deleted li elements
     }
 };
 
+function cleanMemoryFunc(){
+    window.localStorage.clear();
+}
+
+/* deleteAll variable reffers the button used to clear all items. After clicking it, function "deleteAll" is called */
+var cleanMemory = document.getElementById("cleanMemory"); // fetch the "cleanMemory" button
+cleanMemory.addEventListener("click", cleanMemoryFunc); // add click event to "cleanMemory" button and run finction
+
+ /* Save all "li" items form the list to localStorage */
+ var saveAllLi = document.getElementById("save"); // get the "save" button
+ saveAllLi.addEventListener("click", function() { // add event listener to "save" button
+     window.localStorage.clear();
+     var item = document.getElementsByTagName("li"); // get all vurrent "li" items
+     for (var s = 0; s < item.length; s++) { //for every "li" item set a new localStorage item with corresponding key
+         localStorage.setItem([s], JSON.stringify(item[s].innerHTML));
+     }
+ });
 /*
  the program can be perfected indefinitely
  */
