@@ -298,13 +298,13 @@ restore.onclick = function () { //button for restore deleted li elements
     }
 };
 
+/* delete all items from localStore */
 function cleanMemoryFunc(){
     window.localStorage.clear();
 }
 
-/* delete all variable assign the button used to clear all items from localStore */
-var cleanMemory = document.getElementById("cleanMemory"); // fetch the "cleanMemory" button
-cleanMemory.addEventListener("click", cleanMemoryFunc); // add click event to "cleanMemory" button and run function
+var clearMemory = document.getElementById("cleanMemory"); // fetch the "cleanMemory" button
+clearMemory.addEventListener("click", cleanMemoryFunc); // add click event to "cleanMemory" button and run function
 
  /* Save all "li" items form the list to localStorage */
 

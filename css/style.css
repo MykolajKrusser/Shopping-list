@@ -55,8 +55,8 @@ help style
 #help{
     margin: 0;
     position: fixed;
-    top: 10px;
-    right: 10px;
+    top: 5px;
+    right: 5px;
     padding: 2px;
 }
 
