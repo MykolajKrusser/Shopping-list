@@ -56,6 +56,9 @@ v1.3
 - add "Save to memory" button, which saves DOM in browser localStorage
 - add "Clear memory" button, which invokes function with localStorage.clear() method
 
+v1.4
+- add "Help" button with application discription
+- fixed bug with closing button after re-opening the browser and restoring the list from localStorage
+
 Plans for future:
-- add a help button with a description of the program features
 - make an optional catalog of goods, user can choose goods from catalog
