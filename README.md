@@ -57,7 +57,7 @@ v1.3
 - add "Clear memory" button, which invokes function with localStorage.clear() method
 
 v1.4
-- add "Help" button with application discription
+- add "Help" button with application description
 - fixed bug with closing button after re-opening the browser and restoring the list from localStorage
 
 Plans for future:
