@@ -10,23 +10,30 @@ html, body {
 a {
     text-decoration: none;
 }
-.flex {
-    display: flex;
-    flex-wrap: wrap;
-}
+
 section {
     position: relative;
     display: block;
     box-sizing: border-box;
+}
+.flex {
+    display: flex;
+    flex-wrap: wrap;
 }
 .content-wr {
     position: relative;
     max-width: 1200px;
     margin: 0 auto;
 }
+.row{
+    flex-direction: row;
+    justify-content: center;
+    margin: 20px 0 20px 0;
+}
 /*
 main styles of section, content wrapper, inputs, button, and outputs list
  */
+
 #main{
     min-height: 100vh;
     background: url(../img/bg.jpg) center no-repeat fixed ;
@@ -42,9 +49,39 @@ main styles of section, content wrapper, inputs, button, and outputs list
     color: white;
     font-size: 20px;
 }
-#main .content-wr h1{
-    margin-top: 25px;
+/*
+help style
+ */
+#help{
+    margin: 0;
+    position: fixed;
+    top: 10px;
+    right: 10px;
 }
+
+#helpText{
+    box-sizing: border-box;
+    justify-content: space-around;
+    display: none;
+    position: absolute;
+    width: 100%;
+    padding: 30px;
+    background: rgba(242, 118, 143, 0.9);
+    color: black;
+    transition: all 0.5s ease;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    z-index: 99;
+    box-shadow: inset 0 0 15px 0 rgba(255,255,255,0.8);
+    animation: zoomIn 1s forwards;
+}
+#closeHelp{
+    color: red;
+    font-weight: bold;
+}
+/*
+end Help block style
+ */
 #myInput{
     box-sizing: border-box;
     width: 50%;
@@ -57,19 +94,24 @@ main styles of section, content wrapper, inputs, button, and outputs list
     padding-left: 10px;
     font-family: Verdana, sans-serif;
 }
+/*
+common button style
+ */
 .button{
     cursor: pointer;
-    margin-top: 30px;
     box-sizing: border-box;
     border: 1px solid white;
     border-radius: 5px;
-    padding: 15px;
+    padding: 9px;
     transition: 0.5s;
-    margin-right: 20px;
+    margin: 0 20px 0 20px;
 }
 .button:hover{
     font-size: 22px;
 }
+/*
+List Style
+ */
 ul {
     max-width: 1200px;
     flex-direction: row;
@@ -100,6 +142,14 @@ ul li {
     box-shadow: inset 0 0 15px 0 rgba(255,255,255,0.8);
     animation: zoomIn 1s forwards;
 }
+ul li:hover{
+    background: rgba(2, 82, 242, 0.8) no-repeat center;
+    letter-spacing: 1px;
+}
+ul li.checked{
+    color: #aaaaaa;
+    text-decoration: line-through;
+}
 /*
 animation of add and close blocks
  */
@@ -125,14 +175,7 @@ animation of add and close blocks
 /*
 end animation
  */
-ul li:hover{
-    background: rgba(2, 82, 242, 0.8) no-repeat center;
-    letter-spacing: 1px;
-}
-ul li.checked{
-    color: #aaaaaa;
-    text-decoration: line-through;
-}
+
 .close {
     margin: 0 auto;
     text-align: center;
@@ -161,11 +204,6 @@ ul li.checked{
 #total{
     font-size: 26px;
     margin-bottom: 25px;
-}
-.row{
-    flex-direction: row;
-    justify-content: center;
-    margin: 20px 0 100px 0;
 }
 /*
 RWD fixes for better view in smaller screens

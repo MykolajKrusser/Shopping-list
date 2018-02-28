@@ -25,6 +25,19 @@
 <section id="main">
     <div class="content-wr flex">
         <h1>My shopping list</h1>
+        <!--start Help block with button -->
+        <span id="help" class="button">Help</span>
+        <div id="helpText" class="flex">
+            <p>- You can find goods and there prices in application memory by goods name such as : water, tea, coffee, meat, apples and so on.</p>
+            <p>- If app don`t find goods in memory it show add just a name to the list</p>
+            <p>- "Add goods" button add goods name in list</p>
+            <p>- Total cost automatically count goods prices</p>
+            <p>- "Restore deleted" button restore All deleted goods cards</p>
+            <p>- "Save to memory" button save All list in browser memory to next open application, Your list will be restored automatically.</p>
+            <p>- "Clean memory" button remove list from browser memory</p>
+            <span id="closeHelp" class="button">Close help</span>
+        </div>
+        <!-- End HELP block -->
         <input id="myInput" type="text" placeholder="Goods">
         <span id="alert"></span>
         <span id="addBtn" class="button">Add goods</span>
@@ -36,9 +49,7 @@
             <span id="save" class="button">Save to memory</span>
             <span id="cleanMemory" class="button">Clean memory</span>
         </div>
-
     </div>
-
 </section>
 <!--javaScrip file-->
 <script src="js/script.js"></script>

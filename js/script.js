@@ -6,14 +6,30 @@ var restore = document.getElementById("restore");
 var refresher = setInterval(function () { //refresh function sum() every 1 sec to price calculating of visible goods blocks
     sum();
 }, 1000);
+var saveAllLi = document.getElementById("save"); // get the "save" button
+var help = document.getElementById("help"); // get the "help" button
+var closeHelp = document.getElementById("closeHelp");
+var helpText = document.getElementById("helpText");
 
-window.addEventListener("DOMContentLoaded", function() {
-    for (var i = 0; i < localStorage.length; i++) {
-        var item = document.createElement("li");
-        item.style.display = "flex";
-        var localKey = localStorage.getItem(localStorage.key(i));
-        item.innerHTML = JSON.parse(localKey);
-        ulElement.appendChild(item);
+window.addEventListener("DOMContentLoaded", function() { //function to restore li elements from the localStore
+    for (var i = 0; i < localStorage.length; i++) { //get loop through array of key and values
+        var item = document.createElement("li"); //create new li
+        item.style.display = "flex"; //add dispaly style
+        var localKey = localStorage.getItem(localStorage.key(i)); //var localKey get value by keys from localStore
+        item.innerHTML = JSON.parse(localKey); //insert values in HTML or new li elements
+        ulElement.appendChild(item); //new li element insert to ul element
+        for (var j = 0; j < close.length; j++){ //loop fore close button
+            close[j].onclick = function () { // on click event fire function
+                var div = this.parentElement; // get parent element of child span with "X" (output will be li element)
+                div.classList.add("zoomOut"); // and that li element get zoom out animation
+                var async = setInterval(function () { //asynchronous function fore remove li element when user click on "X" span
+                    div.style.display = "none";
+                    clearInterval(async);
+                    div.classList.remove("zoomOut");
+                    div.classList.add("restore");
+                },1000) // time fore remove li element must be equal animation time in css animation description
+            }
+        }
     }
 });
 
@@ -260,7 +276,9 @@ addTask.onclick = function addTask() {
     }
     sum(); // at the end of addTask() function we call calculation function for price if it was found in goods array
 };
-
+/*
+sun function for all li element with style display flex
+ */
 function sum() {
     var totalPrice = document.getElementsByClassName("cost"); // get li collection with class "cost"
     var sum = 0; //star sum price value
@@ -284,20 +302,26 @@ function cleanMemoryFunc(){
     window.localStorage.clear();
 }
 
-/* deleteAll variable reffers the button used to clear all items. After clicking it, function "deleteAll" is called */
+/* delete all variable assign the button used to clear all items from localStore */
 var cleanMemory = document.getElementById("cleanMemory"); // fetch the "cleanMemory" button
-cleanMemory.addEventListener("click", cleanMemoryFunc); // add click event to "cleanMemory" button and run finction
+cleanMemory.addEventListener("click", cleanMemoryFunc); // add click event to "cleanMemory" button and run function
 
  /* Save all "li" items form the list to localStorage */
- var saveAllLi = document.getElementById("save"); // get the "save" button
+
  saveAllLi.addEventListener("click", function() { // add event listener to "save" button
-     window.localStorage.clear();
-     var item = document.getElementsByTagName("li"); // get all vurrent "li" items
-     for (var s = 0; s < item.length; s++) { //for every "li" item set a new localStorage item with corresponding key
-         localStorage.setItem([s], JSON.stringify(item[s].innerHTML));
+     window.localStorage.clear(); //clear memory before save new
+     var item = document.getElementsByTagName("li"); // get all current "li" items
+     for (var s = 0; s < item.length; s++) {
+         localStorage.setItem([s], JSON.stringify(item[s].innerHTML)); //and save it key and value to localStore
      }
  });
+
+help.addEventListener("click", function () {
+    helpText.style.display = "block";
+});
+closeHelp.addEventListener("click", function () {
+        helpText.style.display = "none";
+});
 /*
  the program can be perfected indefinitely
  */
-
