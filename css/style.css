@@ -57,6 +57,7 @@ help style
     position: fixed;
     top: 10px;
     right: 10px;
+    padding: 2px;
 }
 
 #helpText{
