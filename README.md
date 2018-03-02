@@ -60,7 +60,7 @@ v1.4
 - add "Help" button with application description
 - fixed bug with closing button after re-opening the browser and restoring the list from localStorage
 
-v1.4
+v1.5
 - fixed styles
 
 Plans for future:
